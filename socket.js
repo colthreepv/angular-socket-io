@@ -32,9 +32,12 @@ angular.module('btford.socket-io', []).
         socket.on(eventName, asyncAngularify(callback));
       };
 
+      var disconnect = socket.disconnect.bind(socket);
+
       var wrappedSocket = {
         on: addListener,
         addListener: addListener,
+        disconnect: disconnect,
 
         emit: function (eventName, data, callback) {
           if (callback) {
